@@ -20,6 +20,9 @@ class BirdFly(object):
         self.delta_Flap = 90
         self.is_Depressed = False
 
+    def birdHeight(self):
+        return self.height_bird
+
     # Keyboard Control
     def manualMove(self, win):
         # Event Handling
@@ -61,7 +64,10 @@ class ObstaclesPipe(object):
         self.slit_Pos = pos
         self.isInitialized = False
 
-    def getPos(self):
+    def getPosList(self):
+        return self.listArray_slit_Pos
+
+    def getHeightList(self):
         return self.slit_height
 
     def move(self, win):
