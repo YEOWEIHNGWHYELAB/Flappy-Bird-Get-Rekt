@@ -1,0 +1,4 @@
+To Feed to DQN
+
+1) Current height of bird
+2) Slit height of nearest pipe

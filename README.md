@@ -5,3 +5,6 @@ This will be my own version of using reinforcement learning to defeat flappy bir
 just be feeding in data like height of slit, distance to slit, height of bird. The point of doing this is mainly to
 see just how fast the PyTorch library is can solve this problem. Because flappy bird is acutally considered a "trivial" 
 problem that hard coding/explicit coding would have worked without AI. But no, that is not the point haha. 
+
+## References
+Bird Icon: https://www.flaticon.com/free-icon/bird_616438
