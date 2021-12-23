@@ -13,12 +13,13 @@ class BirdFly(object):
     def __init__(self):
         self.height_bird = 330
         self.bird_X = 60
-        self.min_Y = 0
+        self.min_Y = 90
         self.max_Y = 660
         self.bird = pygame.image.load('./Images/bird.png')
-        self.delta_Fall = 20
-        self.delta_Flap = 90
+        self.delta_Fall = 30
+        self.delta_Flap = 60
         self.is_Depressed = False
+        self.dqn_choice = False
 
     def birdHeight(self):
         return self.height_bird
@@ -27,12 +28,46 @@ class BirdFly(object):
     def manualMove(self, win):
         # Event Handling
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_SPACE] == 1 and (not self.is_Depressed):
+
+        # Flappy Hold Control
+        if keys[pygame.K_SPACE] == 1:
             isFlap = True
             self.is_Depressed = True
-        elif keys[pygame.K_SPACE] == 0:
-            self.is_Depressed = False
+        else:
             isFlap = False
+
+        # Flappy Default Control
+        # if keys[pygame.K_SPACE] == 1 and (not self.is_Depressed):
+        #     isFlap = True
+        #     self.is_Depressed = True
+        # elif keys[pygame.K_SPACE] == 0:
+        #     self.is_Depressed = False
+        #     isFlap = False
+        # else:
+        #     isFlap = False
+
+        # Flap Logic
+        if isFlap:
+            if self.height_bird <= self.min_Y:
+                self.height_bird = self.min_Y
+            else:
+                self.height_bird -= self.delta_Flap
+
+            win.blit(self.bird, (self.bird_X, self.height_bird))
+        else:
+            if self.height_bird >= self.max_Y:
+                self.height_bird = self.max_Y
+            else:
+                self.height_bird += self.delta_Fall
+
+            win.blit(self.bird, (self.bird_X, self.height_bird))
+
+    # AI Control
+    def aiMove(self, win):
+        # print(self.dqn_choice)
+        # Event Handling
+        if self.dqn_choice:
+            isFlap = True
         else:
             isFlap = False
 
