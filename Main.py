@@ -62,7 +62,7 @@ def main():
 
     # DQN Network Initialization
     sliding_window_scores = []
-    dqnForFlappy = AI.Dqn(3, 2, 0.7)
+    dqnForFlappy = AI.Dqn(3, 2, 0.80)
 
     # Set up Screen & PyGame
     is_mainloop_running = True
@@ -179,7 +179,10 @@ def main():
         display_avg_reward(win, 10, 90, avfScoreFont)
 
         # AI Handling
-        last_state = [(float(currClosestPos) / denominator), (float(slitCenter) / 660), (float(bird_Y + 32) / (660 + 32))]
+        # last_state = [(float(currClosestPos) / denominator), (float(slitCenter) / 660), (float(bird_Y + 32) / (660 + 32)), (float(slitCenter + 100) / 660), (float(slitCenter - 100) / 660)]
+        last_state = [(float(currClosestPos) / denominator), (float(slitCenter) / 660),
+                      (float(bird_Y + 32) / (660 + 32))]
+        # print(((bird_Y + 32) - slitCenter) / (660 + 32))
         # last_state = [hit_Status, currClosestPos, slitCenter, bird_Y]
         # last_state = [(float(currClosestPos) / width), near_Slit]
         next_action = dqnForFlappy.update(last_reward, last_state)
@@ -188,7 +191,7 @@ def main():
         # print(last_state)
 
         # PyGame Update
-        pygame.time.delay(50)
+        # pygame.time.delay(50)
         clock.tick(500)
         pygame.display.update()
 

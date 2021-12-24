@@ -131,4 +131,4 @@ class ObstaclesPipe(object):
                 # Reset Pipe Position
                 if self.listArray_slit_Pos[i] <= 0:
                     self.listArray_slit_Pos[i] = 1220
-                    self.slit_height[i] = random.randint(200, 660)
+                    self.slit_height[i] = random.randint(300, 660)
