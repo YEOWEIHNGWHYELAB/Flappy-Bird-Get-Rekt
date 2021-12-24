@@ -95,7 +95,7 @@ class Dqn(object):
     def load(self):
         if os.path.isfile('./Brain/last_brain.pth'):
             print("Loading Previously Saved DQN!")
-            checkpoint = torch.load('last_brain.pth')
+            checkpoint = torch.load('./Brain/last_brain.pth')
             self.model.load_state_dict(checkpoint['state_dict'])
             self.optimizer.load_state_dict(checkpoint['optimizer'])
         # If there is no file found then this is executed.

@@ -16,8 +16,8 @@ class BirdFly(object):
         self.min_Y = 90
         self.max_Y = 660
         self.bird = pygame.image.load('./Images/bird.png')
-        self.delta_Fall = 30
-        self.delta_Flap = 60
+        self.delta_Fall = 20
+        self.delta_Flap = 50
         self.is_Depressed = False
         self.dqn_choice = False
 
@@ -126,7 +126,7 @@ class ObstaclesPipe(object):
                     self.isInitialized = True
 
                 # Move Pipe
-                self.listArray_slit_Pos[i] -= 20
+                self.listArray_slit_Pos[i] -= 10
 
                 # Reset Pipe Position
                 if self.listArray_slit_Pos[i] <= 0:
