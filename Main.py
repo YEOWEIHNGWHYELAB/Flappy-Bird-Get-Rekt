@@ -42,7 +42,7 @@ def reward_management(hit_Status, clear_Hit):
     elif (clear_Hit):
         return 0.3
     else:
-        return -0.2
+        return -0.15
 
 
 def main():
@@ -109,8 +109,6 @@ def main():
         # PyGame Draw
         win.fill((0, 0, 0))
         win.blit(background, (0, 0))
-        flappyBird.aiMove(win)
-        obstaclePipe.move(win)
 
         # Collision Handling (pipe width = 60 and slit size is 200 allowable, bird is at 60 + 64 and height - 64)
         clear_Hit = False
@@ -123,16 +121,30 @@ def main():
             if (hit_reset is True):
                 hit_reset = False
 
+
         slitCenter = obstacleHeight[crash_Index] - 100
         currClosestPos = obstaclePos[crash_Index]
         bird_Y = flappyBird.birdHeight()
 
-        if 30 <= currClosestPos <= 124 and abs((bird_Y + 32) - slitCenter) >= 70:
+        if 70 <= currClosestPos <= 124 and abs((bird_Y + 32) - slitCenter) > 100:
             hit_Status = True
             current_Score = 0
             hit_reset = True
         else:
             hit_Status = False
+
+        # Hit Box Diagnostics
+        # pygame.draw.rect(win, (0, 255, 255), pygame.Rect(currClosestPos, 0, 3, 720))
+        # pygame.draw.rect(win, (0, 0, 255), pygame.Rect(70, 0, 3, 720))
+        # pygame.draw.rect(win, (0, 0, 255), pygame.Rect(124, 0, 3, 720))
+        # pygame.draw.rect(win, (0, 0, 255), pygame.Rect(50, bird_Y + 32, 300, 3))
+        # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(50, slitCenter + 100, 300, 3))
+        # pygame.draw.rect(win, (0, 0, 255), pygame.Rect(50, slitCenter, 300, 3))
+        # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(50, slitCenter - 100, 300, 3))
+
+        flappyBird.aiMove(win)
+        # flappyBird.manualMove(win)
+        obstaclePipe.move(win)
 
         bonus = 0.0
         # near_Slit = abs(bird_Y - slitCenter)
@@ -142,9 +154,9 @@ def main():
         if (near_Slit < old_slit and (not hit_Status)):
             bonus = 0.1
         elif(abs(near_Slit) <= 80 and (not hit_Status)):
-            bonus = 0.3
+            bonus = 0.5
         else:
-            bonus = -0.5
+            bonus = -0.6
         old_slit = near_Slit
 
         last_reward = reward_management(hit_Status, clear_Hit) + bonus
@@ -155,8 +167,8 @@ def main():
         # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(124, 300, 30, 10))
         # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(60, 300, 30, 10))
         # print(abs((bird_Y + 32) - slitCenter))
-        pygame.draw.rect(win, (255, 0, 255), pygame.Rect(60, slitCenter, 30, 5))
-        pygame.draw.rect(win, (255, 0, 0), pygame.Rect(60, bird_Y + 32, 30, 5))
+        # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(60, slitCenter, 30, 5))
+        # pygame.draw.rect(win, (255, 0, 0), pygame.Rect(60, bird_Y + 32, 30, 5))
 
         # Scoring Display
         avg_score = dqnForFlappy.overall_score()

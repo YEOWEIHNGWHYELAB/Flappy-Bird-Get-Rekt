@@ -2,3 +2,7 @@ To Feed to DQN
 
 1) Current height of bird
 2) Slit height of nearest pipe
+
+Issue Log
+1) The AI does seem to be able to know that it needs to position the bird within the slit but it still isn't able to do so without colliding anything. Seems that punishment of the bird hitting pipe isn't harsh enough.
+2) Why did I feed in the collision status to the AI? The reward (negative) itself is already an indication of a collision...

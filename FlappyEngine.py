@@ -17,7 +17,7 @@ class BirdFly(object):
         self.max_Y = 660
         self.bird = pygame.image.load('./Images/bird.png')
         self.delta_Fall = 20
-        self.delta_Flap = 50
+        self.delta_Flap = 25
         self.is_Depressed = False
         self.dqn_choice = False
 
