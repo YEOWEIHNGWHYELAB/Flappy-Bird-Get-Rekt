@@ -89,6 +89,7 @@ def main():
     ai_ctrl = True
     score_status = False
     hit_reset = False
+    clear_Hit = False
     old_slit = 0
     highScoreFont = pygame.font.Font('freesansbold.ttf', 32, )
     currentScoreFont = pygame.font.Font('freesansbold.ttf', 32, )
@@ -111,11 +112,10 @@ def main():
         win.blit(background, (0, 0))
 
         # Collision Handling (pipe width = 60 and slit size is 200 allowable, bird is at 60 + 64 and height - 64)
-        clear_Hit = False
         if currClosestPos < obstaclePos[crash_Index]:
             crash_Index = circularArray(crash_Index)
             denominator = 380
-            if (hit_Status is False):
+            if (hit_Status is False and hit_reset is False):
                 current_Score += 1
                 clear_Hit = True
             if (hit_reset is True):
@@ -124,9 +124,12 @@ def main():
 
         slitCenter = obstacleHeight[crash_Index] - 100
         currClosestPos = obstaclePos[crash_Index]
+        # flappyBird.manualMove(win)
+        flappyBird.aiMove(win)
         bird_Y = flappyBird.birdHeight()
 
-        if 70 <= currClosestPos <= 124 and abs((bird_Y + 32) - slitCenter) > 100:
+        # currClosestPos is Obstacle position
+        if 10 <= currClosestPos <= 124 and abs((bird_Y + 32) - slitCenter) > 80:
             hit_Status = True
             current_Score = 0
             hit_reset = True
@@ -142,8 +145,6 @@ def main():
         # pygame.draw.rect(win, (0, 0, 255), pygame.Rect(50, slitCenter, 300, 3))
         # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(50, slitCenter - 100, 300, 3))
 
-        flappyBird.aiMove(win)
-        # flappyBird.manualMove(win)
         obstaclePipe.move(win)
 
         bonus = 0.0
@@ -151,15 +152,15 @@ def main():
         # if (abs(near_Slit) <= 60):
         #     bonus = 0.1
         near_Slit = abs(bird_Y - slitCenter)
-        if (near_Slit < old_slit and (not hit_Status)):
+        if (near_Slit < old_slit and (not hit_reset)):
             bonus = 0.1
-        elif(abs(near_Slit) <= 80 and (not hit_Status)):
+        elif(abs(near_Slit) <= 80 and (not hit_reset)):
             bonus = 0.5
         else:
             bonus = -0.6
         old_slit = near_Slit
 
-        last_reward = reward_management(hit_Status, clear_Hit) + bonus
+        last_reward = reward_management(hit_reset, clear_Hit) + bonus
 
         # Test Collision
         # pygame.draw.rect(win, (255, 0, 255), pygame.Rect(30, slitCenter, 30, 10))
@@ -192,7 +193,7 @@ def main():
 
         # PyGame Update
         # pygame.time.delay(50)
-        clock.tick(500)
+        clock.tick(100)
         pygame.display.update()
 
 
