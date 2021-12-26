@@ -1,6 +1,7 @@
 # Flappy-Bird-Get-Rekt
 
 ## Introduction
+
 This is a test which I will apply the things learnt from my 2D-Self-Driving-Car-Python-3 project to flappy bird. 
 This will be my own version of using reinforcement learning to defeat flappy bird without computer vision.
 
@@ -54,25 +55,24 @@ Link:
 
 ### Initial
 
-Start Time: 5:34 PM
+Start Time: 7:00 PM
 
 Ram Usage: 120.5 MB
 
 ### Termination
 
-End Time: 
+End Time: 9:12 PM
 
-Ram Usage: 
+Ram Usage: 417.8 MB
 
-CPU Usage: 
+High Score: 5117
 
-High Score: 
+Average Reward: 0.03
 
-Average Reward: 
-
-Number of Iteration:
+Number of Iteration: > 350000
 
 ## References
+
 Bird Icon: https://www.flaticon.com/free-icon/bird_616438
 
 Background: https://www.desktopbackground.org/wallpaper/flappy-generator-plus-create-your-own-flappy-bird-game-799254
