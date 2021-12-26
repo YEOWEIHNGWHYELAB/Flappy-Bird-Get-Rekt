@@ -40,7 +40,7 @@ def reward_management(hit_Status, clear_Hit):
     if (hit_Status):
         return -1
     elif (clear_Hit):
-        return 0.3
+        return 1.0
     else:
         return -0.15
 
@@ -89,7 +89,7 @@ def main():
     ai_ctrl = True
     score_status = False
     hit_reset = False
-    clear_Hit = False
+    clear_Hit = True
     old_slit = 0
     highScoreFont = pygame.font.Font('freesansbold.ttf', 32, )
     currentScoreFont = pygame.font.Font('freesansbold.ttf', 32, )
@@ -110,6 +110,8 @@ def main():
         # PyGame Draw
         win.fill((0, 0, 0))
         win.blit(background, (0, 0))
+
+        clear_Hit = False
 
         # Collision Handling (pipe width = 60 and slit size is 200 allowable, bird is at 60 + 64 and height - 64)
         if currClosestPos < obstaclePos[crash_Index]:
@@ -155,11 +157,12 @@ def main():
         if (near_Slit < old_slit and (not hit_reset)):
             bonus = 0.1
         elif(abs(near_Slit) <= 80 and (not hit_reset)):
-            bonus = 0.5
+            bonus = 0.3
         else:
             bonus = -0.6
         old_slit = near_Slit
 
+        # print(clear_Hit)
         last_reward = reward_management(hit_reset, clear_Hit) + bonus
 
         # Test Collision
