@@ -40,18 +40,10 @@ There were several problem at the start:
 5) AI agent still get positive reward even after collision if the collision is momentary due to the hit status not staying
   continously "on" after colliding. So it thinks its doing well when it really isn't...
   
-6) Collision box has incorrect values leading to the bird hitting pipe and not getting detected. 
-  
+6) Collision box has incorrect values leading to the bird hitting pipe and not getting detected.
 
-## Faulty Collision Box Results
 
-Duration of training: 7 Hours
-
-Recorded High Score: 10452
-
-Link: 
-
-## Overall Results 
+## Overall Results [High Score: 5117]
 
 ### Initial
 
@@ -65,11 +57,11 @@ End Time: 9:12 PM
 
 Ram Usage: 417.8 MB
 
-High Score: 5117
-
 Average Reward: 0.03
 
 Number of Iteration: > 350000
+
+Link: 
 
 ## References
 
