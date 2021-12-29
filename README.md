@@ -53,6 +53,8 @@ Ram Usage: 120.5 MB
 
 ### Termination
 
+![Training Plot](Final_Training.png)
+
 End Time: 9:12 PM
 
 Ram Usage: 417.8 MB
