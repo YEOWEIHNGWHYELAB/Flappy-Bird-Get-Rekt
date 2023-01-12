@@ -61,7 +61,6 @@ def main():
     global denominator
 
     # DQN Network Initialization
-    sliding_window_scores = []
     dqnForFlappy = AI.Dqn(3, 2, 0.80)
 
     # Set up Screen & PyGame
@@ -190,7 +189,6 @@ def main():
         # last_state = [hit_Status, currClosestPos, slitCenter, bird_Y]
         # last_state = [(float(currClosestPos) / width), near_Slit]
         next_action = dqnForFlappy.update(last_reward, last_state)
-        sliding_window_scores.append(dqnForFlappy.overall_score())
         flappyBird.dqn_choice = bool(next_action)
         # print(last_state)
 
